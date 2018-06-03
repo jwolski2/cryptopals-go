@@ -129,30 +129,6 @@ func scoreText(textBytes []byte) string {
 	return decryptMessage(byte(key), textBytes)
 }
 
-func exer1() {
-	b64, err := hexToBase64("49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d")
-	if err != nil {
-		fmt.Println("failed to base64 encode hex string", err.Error())
-		os.Exit(1)
-	}
-
-	fmt.Println("=== Set 1, Challenge 1: Convert hex to base64")
-	fmt.Println(b64)
-	fmt.Println()
-}
-
-func exer2() {
-	str, err := fixedXOR("1c0111001f010100061a024b53535009181c", "686974207468652062756c6c277320657965")
-	if err != nil {
-		fmt.Println("failed to XOR strings", err.Error())
-		os.Exit(1)
-	}
-
-	fmt.Println("=== Set 1, Challenge 2: Fixed XOR")
-	fmt.Println(str)
-	fmt.Println()
-}
-
 func exer3() {
 	textBytes, err := hex.DecodeString("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736")
 	if err != nil {
@@ -202,8 +178,6 @@ func exer4() {
 }
 
 func main() {
-	exer1()
-	exer2()
 	exer3()
 	exer4()
 }

@@ -7,4 +7,4 @@ build: $(sources)
 	go build -o $(bin) $(sources)
 
 check: $(sources)
-	go test $(sources)
+	go test -v $(sources)
