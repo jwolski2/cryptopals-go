@@ -168,3 +168,7 @@ func detectSingleCharacterXOR(filename string) (string, error) {
 	}
 	return maxLine, nil
 }
+
+func encryptUsingRepeatingKeyXOR(msg, key string) (string, error) {
+	return "", nil
+}
