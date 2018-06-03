@@ -170,5 +170,11 @@ func detectSingleCharacterXOR(filename string) (string, error) {
 }
 
 func encryptUsingRepeatingKeyXOR(msg, key string) (string, error) {
-	return "", nil
+	msgBytes := []byte(msg)
+	keyBytes := []byte(key)
+	encrypted := make([]byte, len(msgBytes))
+	for i, b := range msgBytes {
+		encrypted[i] = b ^ keyBytes[i%len(keyBytes)]
+	}
+	return hex.EncodeToString(encrypted), nil
 }
