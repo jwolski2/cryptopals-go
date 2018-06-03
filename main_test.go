@@ -28,3 +28,12 @@ func TestSingleByteXORCipher(t *testing.T) {
 	// remains true.
 	assert.Equal(t, "Cooking MC's like a pound of bacon", msg, "decrypted message does not equal expected value")
 }
+
+// Set 1, Challenge 4
+func TestDetectSingleCharacterXOR(t *testing.T) {
+	msg, err := detectSingleCharacterXOR("./4.txt")
+	assert.NoError(t, err, "an error occurred detecting key")
+	// Again, Cryptopals does not you the expected output. But it's pretty clear
+	// what the correct answer is once you decrypt all lines in the file.
+	assert.Equal(t, "Now that the party is jumping\n", msg, "detected msesage does not equal expected value")
+}

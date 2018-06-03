@@ -5,7 +5,6 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"errors"
-	"fmt"
 	"os"
 )
 
@@ -138,10 +137,10 @@ func singleByteXORCipher(str string) (string, error) {
 	return scoreText(textBytes), nil
 }
 
-func exer4() {
-	file, err := os.Open("./4.txt")
+func detectSingleCharacterXOR(filename string) (string, error) {
+	file, err := os.Open(filename)
 	if err != nil {
-		return
+		return "", err
 	}
 	defer file.Close()
 
@@ -156,8 +155,7 @@ func exer4() {
 	for _, line := range lines {
 		textBytes, err := hex.DecodeString(line)
 		if err != nil {
-			fmt.Println("failed to decode string")
-			os.Exit(1)
+			return "", err
 		}
 
 		key := findKey(textBytes)
@@ -168,11 +166,5 @@ func exer4() {
 			maxLine = message
 		}
 	}
-	fmt.Println("=== Set 1, Challenge 4: Detect single-character XOR")
-	fmt.Println(maxLine)
-	fmt.Println()
-}
-
-func main() {
-	exer4()
+	return maxLine, nil
 }
