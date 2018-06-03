@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"errors"
+	"math"
 	"os"
 )
 
@@ -180,5 +181,48 @@ func encryptUsingRepeatingKeyXOR(msg, key string) (string, error) {
 }
 
 func computeHammingDistance(a, b string) (int, error) {
-	return 0, nil
+	aBytes := []byte(a)
+	aLen := len(aBytes)
+
+	bBytes := []byte(b)
+	bLen := len(bBytes)
+
+	xored := make([]byte, int(math.Max(float64(aLen), float64(bLen))))
+
+	if aLen > bLen {
+		for i, aByte := range aBytes {
+			if i >= bLen {
+				xored[i] = aByte ^ 0
+				continue
+			}
+
+			xored[i] = aByte ^ bBytes[i]
+		}
+	} else {
+		for i, bByte := range bBytes {
+			if i >= aLen {
+				xored[i] = bByte ^ 0
+				continue
+			}
+
+			xored[i] = bByte ^ aBytes[i]
+		}
+	}
+
+	distance := 0
+	for _, xorByte := range xored {
+		lastVal := xorByte
+
+		for i := uint(1); i <= 8; i++ {
+			shifted := byte(255 >> i)
+			currVal := lastVal & shifted
+			if currVal != lastVal {
+				distance += 1
+			}
+
+			lastVal = currVal
+		}
+	}
+
+	return distance, nil
 }
