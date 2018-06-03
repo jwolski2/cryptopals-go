@@ -18,3 +18,13 @@ func TestFixedXOR(t *testing.T) {
 	assert.NoError(t, err, "an error occurred xoring")
 	assert.Equal(t, "746865206b696420646f6e277420706c6179", str, "xored value does not equal expected value")
 }
+
+// Set 1, Challenge 3
+func TestSingleByteXORCipher(t *testing.T) {
+	msg, err := singleByteXORCipher("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736")
+	assert.NoError(t, err, "an error occurred decrypting message")
+	// Cryptopals does not tell you the expected output. You have to discover
+	// that for yourself. But once discovered, you want to assert that it
+	// remains true.
+	assert.Equal(t, "Cooking MC's like a pound of bacon", msg, "decrypted message does not equal expected value")
+}

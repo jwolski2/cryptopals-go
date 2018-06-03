@@ -129,17 +129,13 @@ func scoreText(textBytes []byte) string {
 	return decryptMessage(byte(key), textBytes)
 }
 
-func exer3() {
-	textBytes, err := hex.DecodeString("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736")
+func singleByteXORCipher(str string) (string, error) {
+	textBytes, err := hex.DecodeString(str)
 	if err != nil {
-		fmt.Println("failed to decode string")
-		os.Exit(1)
+		return "", err
 	}
 
-	score := scoreText(textBytes)
-	fmt.Println("=== Set 1, Challenge 3: Single-byte XOR cipher")
-	fmt.Println(score)
-	fmt.Println()
+	return scoreText(textBytes), nil
 }
 
 func exer4() {
@@ -178,6 +174,5 @@ func exer4() {
 }
 
 func main() {
-	exer3()
 	exer4()
 }
