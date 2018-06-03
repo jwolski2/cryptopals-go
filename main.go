@@ -6,9 +6,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"os"
-	"testing"
 )
 
 var scores = map[string]float64{
@@ -64,7 +62,7 @@ func fixedXOR(a, b string) (string, error) {
 	return hex.EncodeToString(dest), nil
 }
 
-func hextobase64(hexString string) (string, error) {
+func hexToBase64(hexString string) (string, error) {
 	bytes, err := hex.DecodeString(hexString)
 	if err != nil {
 		return "", err
@@ -131,12 +129,8 @@ func scoreText(textBytes []byte) string {
 	return decryptMessage(byte(key), textBytes)
 }
 
-func TestConvertHexToBase64(t *testing.T) {
-
-}
-
 func exer1() {
-	b64, err := hextobase64("49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d")
+	b64, err := hexToBase64("49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d")
 	if err != nil {
 		fmt.Println("failed to base64 encode hex string", err.Error())
 		os.Exit(1)
