@@ -46,3 +46,10 @@ I go crazy when I hear a cymbal`, "ICE")
 	assert.NoError(t, err, "an error occurring during encryption")
 	assert.Equal(t, "0b3637272a2b2e63622c2e69692a23693a2a3c6324202d623d63343c2a26226324272765272a282b2f20430a652e2c652a3124333a653e2b2027630c692b20283165286326302e27282f", encrypted, "encrypted message does not equal expected value")
 }
+
+// Set 1, Challenge 6
+func TestBreakingRepeatingKeyXOR(t *testing.T) {
+	distance, err := computeHammingDistance("this is a test", "wokka wokka!!!")
+	assert.NoError(t, err, "an error occurred computing hamming distance")
+	assert.Equal(t, 37, distance, "distance is not equal to expected value")
+}

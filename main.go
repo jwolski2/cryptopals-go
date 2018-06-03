@@ -178,3 +178,7 @@ func encryptUsingRepeatingKeyXOR(msg, key string) (string, error) {
 	}
 	return hex.EncodeToString(encrypted), nil
 }
+
+func computeHammingDistance(a, b string) (int, error) {
+	return 0, nil
+}
